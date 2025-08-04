@@ -1,0 +1,69 @@
+{
+  "version": "2.0",
+  "resources": [
+    {
+      "resource": "Connection",
+      "key": "fbcf2d68-9064-4a79-b677-0a2d75c76a4d",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "fbcf2d68-9064-4a79-b677-0a2d75c76a4d",
+          "isExpression": false
+        }
+      },
+      "metadata": {
+        "UseConnectionService": "true",
+        "BindingsVersion": "2.2",
+        "Connector": "uipath-uipath-airdk",
+        "ActivityName": "Content Generation: Extract Compartiment de repartitite"
+      }
+    },
+    {
+      "resource": "Connection",
+      "key": "f16f09d8-70c8-48b3-97b1-bb0d55963436",
+      "value": {
+        "ConnectionId": {
+          "defaultValue": "f16f09d8-70c8-48b3-97b1-bb0d55963436",
+          "isExpression": false,
+          "displayName": "Connection",
+          "description": "The connection to be used"
+        }
+      },
+      "metadata": {
+        "BindingsVersion": "2.2",
+        "Connector": "uipath-microsoft-onedrive",
+        "UseConnectionService": "True"
+      }
+    },
+    {
+      "resource": "Property",
+      "key": "f16f09d8-70c8-48b3-97b1-bb0d55963436.For Each File or Folder",
+      "value": {
+        "FullName": {
+          "defaultValue": "Petitii scanate",
+          "isExpression": false,
+          "displayName": "In location",
+          "description": "The location where to search for files and folders"
+        },
+        "ID": {
+          "defaultValue": "01YFSDDXMXOWDT2A7QVNHKJYKCOCTHXI4H",
+          "isExpression": false,
+          "displayName": "Excel Workbook",
+          "description": "The Excel Workbook file to use"
+        },
+        "ParentDriveID": {
+          "defaultValue": "b!AefLLsWzPUazRNXtGeagNnpP-EliJjlChwnNy1_H-jbwmFsr91EwRbVvgjyshJgs",
+          "isExpression": false,
+          "displayName": "Drive",
+          "description": "The drive (OneDrive/SharePoint) of Excel Workbook"
+        }
+      },
+      "metadata": {
+        "BindingsVersion": "2.1",
+        "ActivityName": "For Each File or Folder",
+        "ObjectName": "CuratedFile",
+        "DisplayLabel": "FullName",
+        "ParentResourceKey": "Connection.f16f09d8-70c8-48b3-97b1-bb0d55963436"
+      }
+    }
+  ]
+}

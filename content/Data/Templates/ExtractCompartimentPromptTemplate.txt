@@ -1,0 +1,75 @@
+﻿Extrage compartimentul de repartitie al unei petitii; 
+adica entitatea responsabila careia trebuie sa ii fie inaintata petitia pentru semnare, aprobare, omologare etc.
+
+Identifica compartimentul corespunzator in functie de continutul petitiei. Informatie poate fi explicita sau implicita.
+
+Returneaza doar una dintre valorile exacte din lista de mai jos. 
+Daca nu poti identifica cu certitudine compartimentul, returneaza Neidentificat.
+
+Valori posibile:
+0. Neidentificat
+1.1. Viceprimar
+1.1.1. Cabinet viceprimar
+1.2. Administratorul Public
+1.3. Secretarul General
+1.3.1. Serviciul Tehnica Legislativa, Secretariat, Arhiva si Evidenta Electorala
+1.3.2. Compartimentul Autoritate Tutelara
+1.4. Cabinetul Primarului
+1.5. Arhitectul Sef
+1.5.1. Serviciul Urbanism si Autorizatii
+1.5.2. Serviciul Reglementari Urbanistice, Cadastru si GIS
+1.5.3. Serviciul Dezvoltare Durabila, Lucrari Publice, Publicitate, Informare
+1.6. Directia Generala Proiecte si Investitii
+1.6.1. Directia Elaborare si Dezvoltare Proiecte
+1.6.1.1. Serviciul Dezvoltare Economica si Crestere Inteligenta
+1.6.1.2. Serviciul Incluziune, Demnitate Sociala
+1.6.1.3. Serviciul Mobilitate si Dezvoltare Durabila
+1.6.2. Directia Implementare Proiecte
+1.7. Directia Generala Comunitate si Politici Publice
+1.7.1. Directia Siguranta Cetatenilor, Locuire si Dezvoltarea Comunitatii
+1.7.2.Serviciul Dezvoltare Economica, Relatii internationale
+1.7.3. Serviciul Educatie, Sanatate, Sport
+1.7.4. Serviciul Protectia Animalelor si Naturii
+1.8. Directia Generala Management si Operatiuni
+1.8.1. Compartimentul Buget, Executie Bugetara, Financiar si Salarizare
+1.8.2. Serviciul Contabilitate
+1.8.3. Serviciul Juridic, Legislatie, Contencios
+1.8.4. Serviciul Management Resurse Umane
+1.8.4.1. Compartimentul Sanatate si Securitate in Munca
+1.9. Directia Comunicare Strategica si Guvernanta
+1.9.1. Serviciul Tehnologie, Inovare, Date
+1.9.2. Serviciul Evaluarea Performantei, Guvernanta
+1.9.3. Serviciul Comunicare
+1.9.4. Serviciul Relatii cu Cetatenii
+1.9.4.1. Compartimentul Relatii cu Asociatiile de Proprietari
+1.10. Directia Logistica
+1.10.1. Serviciul urmarire contracte
+1.10.2. Serviciul achizitii publice
+1.10.2. Serviciul administrativ
+1.11. Serviciul Audit Intern
+1.12. Directia Generala Politia Locala Sector 1
+1.12.1. Compartimentul Ordine Publica
+1.12.2. Compartimentul Circulatie Rutiera
+1.12.3. Compartimentul Auto Abandonate si Fara Stapan
+1.12.4. Compartimentul Dispecerat Integrat
+1.12.5. Compartimentul Disciplina in Constructii si Protectia Mediului
+1.12.6. Compartimentul Control Activitati Comerciale si Afisaj Stradal
+1.12.7. Compartimentul Situatii de Urgenta
+2. Consiliul local al Sectorului 1 al Municipiului Bucuresti
+2.1. Directia Publica de Evidenta a Persoanelor si Stare Civila Sector 1
+2.1.1. Serviciul 1 de Evidenta a Persoanelor Sectorul 1
+2.1.2. Serviciul 2 de Evidenta a Persoanelor Sectorul 1
+2.1.3. Compartimentul Informatic
+2.1.4. Compartimentul Analiza-Sinteza Secretariat
+2.1.5. Serviciul Inregistrari Acte de Nastere
+2.1.6. Compartimentul Inregistrari Acte Casatorie si Divort pe Cale Administrativa
+2.1.7. Compartimentul Inregistrari Acte Decese
+2.1.8. Serviciul Acte Inregistrate la Misiunile Diplomatice sau Oficii Consulare de Cariera ale Romaniei
+2.1.9. Compartimentul Registratura si Relatii cu Publicul
+2.1.10. Compartimentul Corespondenta, Rectificari si Inscrieri Mentiuni din Strainatate
+2.1.11. Serviciul Transcrieri Certificate Inregistrate la Autoritatile Administrative Locale din Strainatate
+
+Important: Nu lasa rezultatul gol si nu returna ceva ce nu este in lista de mai sus, daca nu esti sigur returneaza Neidentificat.
+
+Textul complet al petitiei:
+{0}

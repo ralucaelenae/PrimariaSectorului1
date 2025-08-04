@@ -1,0 +1,98 @@
+{
+  "version": "1.0",
+  "resources": [
+    {
+      "resource": "Connection",
+      "metadata": {
+        "ConnectionId": {
+          "defaultValue": "fbcf2d68-9064-4a79-b677-0a2d75c76a4d",
+          "isExpression": false
+        },
+        "UseConnectionService": {
+          "defaultValue": "true",
+          "isExpression": false
+        },
+        "BindingsVersion": {
+          "defaultValue": "2.2",
+          "isExpression": false
+        },
+        "Connector": {
+          "defaultValue": "uipath-uipath-airdk",
+          "isExpression": false
+        },
+        "ActivityName": {
+          "defaultValue": "Content Generation: Extract Compartiment de repartitite",
+          "isExpression": false
+        }
+      }
+    },
+    {
+      "resource": "Connection",
+      "metadata": {
+        "ConnectionId": {
+          "defaultValue": "f16f09d8-70c8-48b3-97b1-bb0d55963436",
+          "isExpression": false,
+          "displayName": "Connection",
+          "description": "The connection to be used"
+        },
+        "BindingsVersion": {
+          "defaultValue": "2.2",
+          "isExpression": false
+        },
+        "Connector": {
+          "defaultValue": "uipath-microsoft-onedrive",
+          "isExpression": false
+        },
+        "UseConnectionService": {
+          "defaultValue": "True",
+          "isExpression": false,
+          "displayName": "Use Integration Service",
+          "description": "Uses the Integration Service to authenticate to the service"
+        }
+      }
+    },
+    {
+      "resource": "Property",
+      "metadata": {
+        "FullName": {
+          "defaultValue": "Petitii scanate",
+          "isExpression": false,
+          "displayName": "In location",
+          "description": "The location where to search for files and folders"
+        },
+        "ID": {
+          "defaultValue": "01YFSDDXMXOWDT2A7QVNHKJYKCOCTHXI4H",
+          "isExpression": false,
+          "displayName": "Excel Workbook",
+          "description": "The Excel Workbook file to use"
+        },
+        "ParentDriveID": {
+          "defaultValue": "b!AefLLsWzPUazRNXtGeagNnpP-EliJjlChwnNy1_H-jbwmFsr91EwRbVvgjyshJgs",
+          "isExpression": false,
+          "displayName": "Drive",
+          "description": "The drive (OneDrive/SharePoint) of Excel Workbook"
+        },
+        "BindingsVersion": {
+          "defaultValue": "2.1",
+          "isExpression": false
+        },
+        "ActivityName": {
+          "defaultValue": "For Each File or Folder",
+          "isExpression": false
+        },
+        "ObjectName": {
+          "defaultValue": "CuratedFile",
+          "isExpression": false
+        },
+        "DisplayLabel": {
+          "defaultValue": "FullName",
+          "isExpression": false
+        },
+        "ParentResourceKey": {
+          "defaultValue": "Connection.f16f09d8-70c8-48b3-97b1-bb0d55963436",
+          "isExpression": false
+        }
+      }
+    }
+  ]
+}

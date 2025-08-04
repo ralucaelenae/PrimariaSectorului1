@@ -1,0 +1,362 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="_50_Extract" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:isactr="http://schemas.uipath.com/workflow/integration-service-activities/isactr" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/document-processing-contracts/taxonomy" xmlns:p1="http://schemas.uipath.com/workflow/activities/document-processing-contracts/dom" xmlns:p2="http://schemas.uipath.com/workflow/activities/document-processing-contracts/results" xmlns:p3="http://schemas.uipath.com/workflow/activities/intelligentocr/extraction" xmlns:p4="http://schemas.uipath.com/workflow/activities/documentunderstanding-ml" xmlns:p5="http://schemas.uipath.com/workflow/activities/document-processing-contracts/extraction" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uiascb="clr-namespace:UiPath.IntegrationService.Activities.SWEntities.C2D75C76A4D_v2_sub_generateChatCompletion_Create.Bundle;assembly=C2D75C76A4D_v2_sub_g.FduLV1UOPlR1MwZPH3uGzQh" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="The file path of the target document that is going to be processed." Name="in_TargetDocument" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Stores the project taxonomy against which the documents can be processed." Name="io_DocTaxonomy" Type="InOutArgument(p:DocumentTaxonomy)" />
+    <x:Property sap2010:Annotation.AnnotationText="The Document Object Model (DOM) of the target document." Name="in_DOM" Type="InArgument(p1:Document)" />
+    <x:Property sap2010:Annotation.AnnotationText="The text extracted from the target document." Name="in_DocText" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Classification result given by running the chosen classifier over the target document." Name="in_ClassificationResult" Type="InArgument(p2:ClassificationResult)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property sap2010:Annotation.AnnotationText="Used to control the number of attempts of retrying in case of a system exception." Name="in_MaxAttempts" Type="InArgument(x:Int32)" />
+    <x:Property sap2010:Annotation.AnnotationText="Used to control the amount of time between retries in the Retry Scope activity." Name="in_RetryInterval" Type="InArgument(x:TimeSpan)" />
+    <x:Property sap2010:Annotation.AnnotationText="The results of the data extraction process." Name="out_ExtractionResults" Type="OutArgument(p2:ExtractionResult)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>855.3333333333333,1292.666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>_50_Extract_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Results</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Dom</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.Taxonomy</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities.DataExtraction</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts.DataExtraction</x:String>
+      <x:String>UiPath.DocumentProcessing.Contracts</x:String>
+      <x:String>UiPath.SmartData.PositionBasedExtraction.Storage</x:String>
+      <x:String>UiPath.DocumentUnderstanding.ML.Activities</x:String>
+      <x:String>UiPath.DocumentUnderstanding.ML.Activities.Editors</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Numerics</x:String>
+      <x:String>UiPath.IntelligentOCR.Activities</x:String>
+      <x:String>UiPath.DU.Shared.Utils</x:String>
+      <x:String>UiPath.Core.Activities.Orchestrator</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models.FilterBuilder</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Models</x:String>
+      <x:String>UiPath.IntegrationService.Activities.Runtime.Activities</x:String>
+      <x:String>UiPath.Platform.Activities</x:String>
+      <x:String>UiPath.IntegrationService.Activities.SWEntities.C2D75C76A4D_v2_sub_generateChatCompletion_Create.Bundle</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="74">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentProcessing.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.DocumentUnderstanding.ML.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.SmartData.PositionBasedExtraction</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
+      <AssemblyReference>UiPath.IntelligentOCR</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>C2D75C76A4D_v2_sub_g.FduLV1UOPlR1MwZPH3uGzQh</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>NPOI.Core</AssemblyReference>
+      <AssemblyReference>System.Linq.Async.Queryable</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Pre-extraction processing and Data Extraction workflow. Extractors are process-dependant!&#xA;&#xA;Outputs whether Human validation is required." DisplayName="Extract" sap:VirtualizedContainerService.HintSize="1024.8000000000002,1966.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message - Start Data Extraction" sap:VirtualizedContainerService.HintSize="552.8,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[in_Config(&quot;LogMessage_DataExtractionStart&quot;) + &quot; &quot; + &quot;Documents.Other.Petitie&quot;+ Environment.NewLine + in_Config(&quot;logKey&quot;)]" />
+    <ui:RetryScope sap2010:Annotation.AnnotationText="Extractors might need to make API calls. The retry mechanism is used to compensate for minor fluctuations in network stability and other recoverable issues.&#xA;&#xA;MaxExecutionAttemptsExtract overrides the default number of execution attempts." DisplayName="Retry Scope - Extract" sap:VirtualizedContainerService.HintSize="552.8,1572" sap2010:WorkflowViewState.IdRef="RetryScope_1" NumberOfRetries="[Cint(in_Config(&quot;MaxExecutionAttemptsExtract&quot;))]" RetryInterval="[in_RetryInterval]">
+      <ui:RetryScope.ActivityBody>
+        <ActivityAction>
+          <Sequence sap:VirtualizedContainerService.HintSize="511.2,1288" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="x:String" Name="Prompt" />
+              <Variable x:TypeArguments="x:String" Name="Compartiment" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:ReadTextFile File="{x:Null}" Content="[Prompt]" DisplayName="Read Text File: Extract Compartiment Prompt Template" FileName="Data\Templates\ExtractCompartimentPromptTemplate.txt" sap:VirtualizedContainerService.HintSize="477.6,112.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+            <isactr:ConnectorActivity Configuration="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" ConnectionId="fbcf2d68-9064-4a79-b677-0a2d75c76a4d" DisplayName="Content Generation: Extract Compartiment de repartitite" sap:VirtualizedContainerService.HintSize="477.6,424" sap2010:WorkflowViewState.IdRef="ConnectorActivity_1" UiPathActivityTypeId="aba52a00-4c05-318d-8f99-5ad924b2f277">
+              <isactr:ConnectorActivity.FieldObjects>
+                <isactr:FieldObject Name="modelName" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">anthropic.claude-3-5-sonnet-20241022-v2:0</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="prompt" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">[String.Format(Prompt, in_DocText)]</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="isPIIEnabled" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="isFilterPIIEnabled" Type="FieldArgument" />
+                <isactr:FieldObject Name="languageCode" Type="FieldArgument" />
+                <isactr:FieldObject Name="piiEntityCategories_array" Type="FieldArgument" />
+                <isactr:FieldObject Name="confidenceThreshold" Type="FieldArgument" />
+                <isactr:FieldObject Name="topK" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Int32" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="contextGrounding" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String">None</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="_file" Type="FieldArgument" />
+                <isactr:FieldObject Name="folderKey" Type="FieldArgument" />
+                <isactr:FieldObject Name="topP" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Double" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="indexID" Type="FieldArgument" />
+                <isactr:FieldObject Name="numberOfResults" Type="FieldArgument" />
+                <isactr:FieldObject Name="top_p" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Int64" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="instruction" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String" xml:space="preserve">Ești un asistent inteligent care analizează conținutul unei petiții adresate Primăriei Sectorului 1 București și identifică compartimentul de repartiție responsabil, adică entitatea administrativă care trebuie să primească documentul pentru aprobare, semnare, avizare sau soluționare.
+
+Compartimentul poate fi menționat explicit sau dedus din contextul petiției. Trebuie să returnezi doar una dintre valorile exacte din lista prestabilită de compartimente oficiale.
+
+Dacă nu se poate determina cu un grad ridicat de certitudine compartimentul corect, returnează „Primar” ca variantă implicită.
+
+Nu adăuga explicații, comentarii sau alte informații. Returnează doar **numele exact al compartimentului** identificat, așa cum apare în listă.
+
+Context: Datele sunt extrase dintr-o petiție primită de Primăria Sectorului 1 București.
+</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="max_tokens" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Int64" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="temperature" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Double">0</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="frequency_penalty" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Int64">0</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="presence_penalty" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Int64">0</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="n" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:Int64">1</InArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="_stop" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <InArgument x:TypeArguments="x:String" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="out_text" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="x:String">[Compartiment]</OutArgument>
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="out_maskedText" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="x:String" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="Jit_v2_sub_generateChatCompletion" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="uiascb:v2_sub_generateChatCompletion_Create" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+                <isactr:FieldObject Name="out_contextGroundingCitationsString" Type="FieldArgument">
+                  <isactr:FieldObject.Value>
+                    <OutArgument x:TypeArguments="x:String" />
+                  </isactr:FieldObject.Value>
+                </isactr:FieldObject>
+              </isactr:ConnectorActivity.FieldObjects>
+            </isactr:ConnectorActivity>
+            <p3:DataExtractionScope ClassificationResult="{x:Null}" RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" sap2010:Annotation.AnnotationText="Using the in_ClassificationResult.DocumentTypeId instead of the whole classification result because the references &amp; token inside the classification result do not match split files." ApplyGenerativeValidation="False" DisplayName="Data Extraction Scope" DocumentObjectModel="[in_DOM]" DocumentPath="[in_TargetDocument]" DocumentText="[in_DocText]" DocumentTypeId="Documents.Other.Petitie" ExtractionResult="[out_ExtractionResults]" FormatValuesIfPossible="True" GenerativeValidationConfidenceThreshold="99" sap:VirtualizedContainerService.HintSize="477.6,494.4" sap2010:WorkflowViewState.IdRef="DataExtractionScope_1" Taxonomy="[io_DocTaxonomy]" TaxonomyConfiguration="{}{&quot;TaxonomyMappings&quot;:{&quot;UI25a6dc47f3814fb5b8c204ff8cf7fcff&quot;:{&quot;DocumentTypeMappings&quot;:{&quot;Documents.Other.Petitie&quot;:{&quot;FieldMappings&quot;:{&quot;Documents.Other.Petitie.Provenienta&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Provenienta&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Subiect&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Subiect&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Nume&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Nume&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Telefon&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Telefon&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Fax&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Fax&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Email&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Email&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.CNP&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.CNP&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Serie_Act_Identitate&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Serie_Act_Identitate&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Numar_Act_Identitate&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Numar_Act_Identitate&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Valabilitate_Act_Identitate&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Valabilitate_Act_Identitate&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Judet&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Judet&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.OrasComuna&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.OrasComuna&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Sat&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Sat&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Adresa&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Adresa&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.NumeFirma&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.NumeFirma&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.InCalitateDe&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.InCalitateDe&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.CUIFirma&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.CUIFirma&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.NrRegistrulComertului&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.NrRegistrulComertului&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.ActivitateEconomica&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.ActivitateEconomica&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Desfasurareaactivitatiide&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Desfasurareaactivitatiide&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.CAEN&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.CAEN&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Conform&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Conform&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.JudetFirma&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.JudetFirma&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.OrasComunaFirma&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.OrasComunaFirma&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.SatFirma&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.SatFirma&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Adresafirma&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Adresafirma&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Departamentresponsabil&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Departamentresponsabil&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true},&quot;Documents.Other.Petitie.Departamentspreinformare&quot;:{&quot;OriginalTaxonomyFieldId&quot;:&quot;Documents.Other.Petitie.Departamentspreinformare&quot;,&quot;ExtractorTaxonomyFieldId&quot;:null,&quot;ShouldExtract&quot;:true}},&quot;ExtractorDocumentTypeId&quot;:null}}}},&quot;ExtractorMinimumConfidence&quot;:{&quot;UI25a6dc47f3814fb5b8c204ff8cf7fcff&quot;:&quot;0&quot;},&quot;ExtractorsAliases&quot;:{},&quot;DocumentTypeOptionsByExtractor&quot;:{&quot;UI25a6dc47f3814fb5b8c204ff8cf7fcff&quot;:[]}}">
+              <p3:DataExtractionScope.AvailableAssetPaths>
+                <x:Array Type="x:String">
+                  <x:String>Shared/Vision_Credentials_Test</x:String>
+                </x:Array>
+              </p3:DataExtractionScope.AvailableAssetPaths>
+              <p3:DataExtractionScope.Extractors>
+                <p4:GenerativeExtractor RuntimeAssetPath="{x:Null}" RuntimeTenantUrl="{x:Null}" DisplayName="Generative Extractor" GenerativeModelsForDocumentType="{}{&quot;Documents.Other.Petitie&quot;:{&quot;Id&quot;:&quot;generative_extractor&quot;,&quot;Name&quot;:&quot;Long Document Simple Layout Extractor&quot;,&quot;DocumentTypeId&quot;:&quot;&quot;,&quot;Status&quot;:7,&quot;DetailsUrl&quot;:&quot;https://cloud.uipath.com:443/47f0c327-d5eb-4054-8ff3-437e00d09542/18ba0285-b619-40d8-a00c-0a4c5411f05d/du_/api/framework/projects/00000000-0000-0000-0000-000000000001/extractors/generative_extractor?api-version=1.1&quot;,&quot;SyncUrl&quot;:&quot;https://cloud.uipath.com:443/47f0c327-d5eb-4054-8ff3-437e00d09542/18ba0285-b619-40d8-a00c-0a4c5411f05d/du_/api/framework/projects/00000000-0000-0000-0000-000000000001/extractors/generative_extractor/extraction?api-version=1.1&quot;,&quot;AsyncUrl&quot;:&quot;https://cloud.uipath.com:443/47f0c327-d5eb-4054-8ff3-437e00d09542/18ba0285-b619-40d8-a00c-0a4c5411f05d/du_/api/framework/projects/00000000-0000-0000-0000-000000000001/extractors/generative_extractor/extraction/start?api-version=1.1&quot;,&quot;ProjectVersion&quot;:null,&quot;ProjectVersionName&quot;:null,&quot;ResourceType&quot;:&quot;Generative&quot;,&quot;Description&quot;:null}}" sap:VirtualizedContainerService.HintSize="281.6,76" sap2010:WorkflowViewState.IdRef="GenerativeExtractor_1" PersistenceId="UI25a6dc47f3814fb5b8c204ff8cf7fcff" Prompt="{}{&quot;Documents.Other.Petitie.Provenienta&quot;:&quot;Determină proveniența emitentului petiției pe baza contextului din document, în special din numele acestuia, deoarece tipul nu este menționat explicit; rezultatul trebuie să fie unul dintre următoarele: Persoană Fizică, Persoană Juridică sau Instituție; consideră emitent drept Persoană Fizică dacă apare un nume în formatul Nume Prenume fără alți identificatori specifici; consideră Persoană Juridică dacă numele conține termeni sau abrevieri precum SC, SRL, SA, PFA, II, IF, SNC, SCS, SCA; consideră Instituție dacă numele conține denumiri precum Primăria, Consiliul, Ministerul, Direcția, Inspectoratul, Agenția, Universitatea, Școala, Liceul, Spitalul, Fundația, Asociația.&quot;,&quot;Documents.Other.Petitie.Subiect&quot;:&quot;Rezumă pe scurt tema principală sau obiectul petiției; doar formularea esențială, insa fara a omite detalii ce dau context subiectului petitiei. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Nume&quot;:&quot;Găsește secțiunea care conține datele de identificare ale emitentului și extrage numele entității care formulează petiția; in cazul persoanelor fizice, ordinea este obligatorie: numele de familie urmat de prenume (Nume Prenume), chiar dacă în text apar invers, păstrează cratima din prenume compus (ex: Popescu Andrei-Mihai); d dacă este instituție publică, extrage denumirea completă fără a o confunda cu persoane sau firme (ex: Primăria Municipiului X, Direcția Y, Ministerul Z, Universitatea X, Liceul Y); în toate cazurile, nu include funcții, titluri sau formulări introductive precum „subsemnatul” sau „reprezentat de”. Caută cu prioritate în corpul petiției, în zona completată de emitent, nu în părțile statice ale formularului. Toate numele extrase trebuie să fie returnate în format Title Case, adică fiecare cuvânt să înceapă cu majusculă.&quot;,&quot;Documents.Other.Petitie.Telefon&quot;:&quot;Găsește secțiunea care conține datele de contact ale emitentului și extrage orice număr de telefon asociat persoanei sau entității care trimite petiția; dacă sunt mai multe, alege-l pe cel din zona de contact sau semnătură. Returnează numărul de telefon fără spații, puncte sau virgule între cifre; singurele caractere permise sunt semnul + și cifrele de la 0 la 9.&quot;,&quot;Documents.Other.Petitie.Fax&quot;:&quot;Gaseste portiunea ce contine datele de contact ale emitentului. Extrage doar dacă este clar marcat ca număr de fax (ex: „Fax:”, „Nr. fax:”); evită confuzia cu numere de telefon sau coduri poștale.&quot;,&quot;Documents.Other.Petitie.Email&quot;:&quot;Gaseste portiunea ce contine datele de contact ale emitentului. Caută și extrage adresa de email aparținând persoanei fizice, firmei sau instituției care semnează petiția.&quot;,&quot;Documents.Other.Petitie.CNP&quot;:&quot;Găsește secțiunea care conține datele de identificare ale emitentului și extrage CNP-ul persoanei fizice, dacă este prezent; nu extrage șiruri de cifre care doar par a fi CNP dacă nu sunt contextual marcate ca atare. Returnează doar CNP-ul format din 13 cifre, eliminând orice caractere de separare (cum ar fi |, spații, puncte sau liniuțe), chiar dacă este completat caracter cu caracter. Caută cu prioritate în corpul petiției, în zonele completate de emitent, nu în părțile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Serie_Act_Identitate&quot;:&quot;Gaseste portiunea ce contine datele de identificare ale emitentului. Extrage seria actului de identitate (ex: „AB”, „KX”) dintr-o formulare completă de tip buletin/CI; nu extrage prefixe ale altor coduri. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Numar_Act_Identitate&quot;:&quot;Gaseste portiunea ce contine datele de identificare ale emitentului. Extrage numărul actului de identitate doar dacă este clar contextualizat; nu confunda cu CNP, numere de dosar sau alte coduri numerice. Nu extrage si seria, doar numarul (contine doar cifre). Extrage numai numarul precedat de o serie a actului de identitate, este foarte important ca cele 2 sa fie impreuna, altfel se poate ca rezultatul sa contina o serie si un numar ce apartin unor entitati diferite. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Valabilitate_Act_Identitate&quot;:&quot;Gaseste portiunea ce contine datele de identificare ale emitentului. Extrage data de expirare a actului de identitate, dacă apare; caută expresii precum „valabil până la”, „expiră la”, „validitate:”. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Judet&quot;:&quot;Extrage județul domiciliului, reședinței sau al sediului entității care semnează petiția; nu extrage județe doar menționate în conținutul petiției fără legătură cu emitentul. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.OrasComuna&quot;:&quot;Extrage orașul, localitatea sau comuna asociată emitentului; preferă locația din adresa completă, dacă e prezentă. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Sat&quot;:&quot;Extrage satul asociat emitentului; preferă locația din adresa completă, dacă e prezentă. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.Adresa&quot;:&quot;Extrage adresa completă a emitentului din document. Caută aceste informații în corpul textului completat de emitent, nu în părțile standardizate sau prestabilite ale formularului. Returnează adresa în următorul format, exact în această ordine, separate prin virgulă: Strada, Număr, Bloc, Scara, Etaj, Apartament. Dacă una dintre componente lipsește, folosește caracterul '-' în locul ei (nu o lăsa goală). Exemplu rezultat corect: Strada Florilor, Numar 12,  Bloc B3, Scara A, Etaj 2, Apartament 10. Exemplu când lipsesc unele informații: Strada Victoriei, Numar 25,  Bloc -, Scara -, Etaj -, Apartament -. Tot timpul inaintea numelui strazii pune Strada pentru a putea facilita extragerea individuala a partilor. Nu dubla cuvantul Strada daca exista si in text.&quot;,&quot;Documents.Other.Petitie.NumeFirma&quot;:&quot;Găsește secțiunea care conține datele de identificare ale entitatii juridice și extrage numele entității in numele careia este formulata petiția; iextrage denumirea oficială, incluzând identificatori precum SC, SRL, SA, SNC, SCS, SCA, PFA, II, IF. Prioritatea este sa cauti in corpul petitie unde se afla datele introduse de catre emitent, nu in partile statice ale formularului.&quot;,&quot;Documents.Other.Petitie.InCalitateDe&quot;:&quot;Găsește secțiunea care conține datele persoanei fizice care depune cererea în numele unei persoane juridice și extrage titulatura sau poziția acesteia în cadrul firmei. Caută formulările care indică poziția explicită, cum ar fi administrator, director general, manager, reprezentant legal etc., sau alte roluri similare asociate cu persoana fizică.Nu include formulări introductive precum „subsemnatul”, „eu, în calitate de”, sau titluri onorifice care nu au relevanță directă pentru poziția în firmă (ex: „Domnul” / „Doamna”).Returnează poziția în format Title Case, fiecare cuvânt începând cu majusculă (ex: „Director General”).Caută cu prioritate în corpul petiției, în proximitatea identificării persoanei juridice emitente.&quot;,&quot;Documents.Other.Petitie.CUIFirma&quot;:&quot;Identifică și extrage Codul Unic de Înregistrare (CUI) al persoanei juridice emitente a cererii. CUI-ul este format exclusiv din cifre și are între 2 și 10 caractere numerice. Caută expresii specifice, cum ar fi CUI, Cod Unic de Înregistrare sau Cod Fiscal, și returnează doar numărul corespunzător fără text sau simboluri adiționale.  Asigură-te că CUI-ul extras este valid ca format numeric, iar dacă nu este găsit sau este invalid, returnează N/A. Returnează doar numărul în forma sa numerică, exemplu: 12345678. Prioritizează zona textului în care sunt prezentate datele firmei sau ale emitentului cererii.&quot;,&quot;Documents.Other.Petitie.NrRegistrulComertului&quot;:&quot;Identifică și extrage numărul de înregistrare în Registrul Comerțului (J/F) al firmei sau persoanei fizice autorizate. Formatul trebuie să includă prefixul J sau F, codul județului, numărul de ordine și anul înmatriculării, separate prin „/”. Exemplu: J-40-12345/2023. Caută acest număr în zona de identificare a firmei sau emitentului cererii și returnează exact cum apare în text.&quot;,&quot;Documents.Other.Petitie.ActivitateEconomica&quot;:&quot;Identifică și extrage activitatea economică principală declarată de emitent. Caută descrieri referitoare la activitatea desfășurată sau alte formulări similare, cum ar fi „activitate principală” și redă această informație textual, exact cum apare în text. Prioritizează secțiunea de identificare a firmei sau emitentului și returnează activitatea principală.&quot;,&quot;Documents.Other.Petitie.Desfasurareaactivitatiide&quot;:&quot;Identifică și extrage descrierea activității desfășurate de emitent din text. Focalizează pe formulările care încep cu „desfășurarea activității de” sau expresii similare. Redă informațiile textual, exact așa cum apar în text, fără modificări. Prioritizează zona unde se face referire la activitatea declarat.&quot;,&quot;Documents.Other.Petitie.CAEN&quot;:&quot;Identifică și extrage codul CAEN asociat activității economice principale a emitentului. Caută explicit formatul numeric al codului CAEN (exemplu: 0111, 6201) în secțiunea desemnată pentru activitatea economică. Caută mențiuni de tip „cod CAEN” și asigură-te că codul extras conține doar cifrele corespunzătoare. Returnează exact codul numeric.&quot;,&quot;Documents.Other.Petitie.Conform&quot;:null,&quot;Documents.Other.Petitie.JudetFirma&quot;:&quot;Identifică și extrage județul în care firma este înregistrată. Caută mențiuni explicite de județ în zona de identificare a persoanei juridice sau oriunde este specificată locația acesteia. Redă numele județului exact cum apare în text, fără alte informații adiționale.&quot;,&quot;Documents.Other.Petitie.OrasComunaFirma&quot;:&quot;Identifică și extrage orașul sau comuna în care firma este înregistrată. Caută mențiuni explicite de localitate în zona de identificare a persoanei juridice sau oriunde este specificată adresa firmei. Redă numele orașului sau comunei exact cum apare în text, fără alte informații adiționale.&quot;,&quot;Documents.Other.Petitie.SatFirma&quot;:&quot;Identifică și extrage denumirea satului în care firma este înregistrată. Caută mențiuni explicite de sat în secțiunea dedicată adresei firmei sau oriunde sunt specificate detaliile locației emitentului. Redă numele satului exact cum apare în text, fără alte informații adiționale.&quot;,&quot;Documents.Other.Petitie.Adresafirma&quot;:&quot;Extrage adresa completă înregistrată oficial a firmei din document. Returnează informațiile în următorul format, separate prin virgulă: Strada, Număr, Bloc, Scara, Etaj, Apartament. Dacă o componentă lipsește, completează cu simbolul „-” în locul ei. Exemplu corect: Strada Florilor, Numar 12, Bloc B3, Scara A, Etaj 2, Apartament 10. Exemplu cu informații lipsă: Strada Victoriei, Numar 25, Bloc -, Scara -, Etaj -, Apartament -. Asigură-te că înaintea numelui străzii adaugi „Strada”, dar nu dubla acest termen dacă apare deja în text. Verifică informațiile din zona care detaliază adresa oficială unde firma este înregistrată. Respectă formatul indicat și nu adăuga informații suplimentare.&quot;}" RetryOnFailure="True" Timeout="3600000">
+                  <p4:GenerativeExtractor.AvailableAssetPaths>
+                    <x:Array Type="x:String">
+                      <x:String>Shared/Vision_Credentials_Test</x:String>
+                    </x:Array>
+                  </p4:GenerativeExtractor.AvailableAssetPaths>
+                  <p4:GenerativeExtractor.DocumentBounds>
+                    <InArgument x:TypeArguments="p2:ResultsDocumentBounds">
+                      <DelegateArgumentValue x:TypeArguments="p2:ResultsDocumentBounds">
+                        <DelegateInArgument x:TypeArguments="p2:ResultsDocumentBounds" Name="DocumentBounds" />
+                      </DelegateArgumentValue>
+                    </InArgument>
+                  </p4:GenerativeExtractor.DocumentBounds>
+                  <p4:GenerativeExtractor.DocumentObjectModel>
+                    <InArgument x:TypeArguments="p1:Document">
+                      <DelegateArgumentValue x:TypeArguments="p1:Document">
+                        <DelegateInArgument x:TypeArguments="p1:Document" Name="DocumentObjectModel" />
+                      </DelegateArgumentValue>
+                    </InArgument>
+                  </p4:GenerativeExtractor.DocumentObjectModel>
+                  <p4:GenerativeExtractor.DocumentPath>
+                    <InArgument x:TypeArguments="x:String">
+                      <DelegateArgumentValue x:TypeArguments="x:String">
+                        <DelegateInArgument x:TypeArguments="x:String" Name="DocumentPath" />
+                      </DelegateArgumentValue>
+                    </InArgument>
+                  </p4:GenerativeExtractor.DocumentPath>
+                  <p4:GenerativeExtractor.DocumentText>
+                    <InArgument x:TypeArguments="x:String">
+                      <DelegateArgumentValue x:TypeArguments="x:String">
+                        <DelegateInArgument x:TypeArguments="x:String" Name="DocumentText" />
+                      </DelegateArgumentValue>
+                    </InArgument>
+                  </p4:GenerativeExtractor.DocumentText>
+                  <p4:GenerativeExtractor.ExtractorDocumentType>
+                    <InArgument x:TypeArguments="p5:ExtractorDocumentType">
+                      <DelegateArgumentValue x:TypeArguments="p5:ExtractorDocumentType">
+                        <DelegateInArgument x:TypeArguments="p5:ExtractorDocumentType" Name="ExtractorDocumentType" />
+                      </DelegateArgumentValue>
+                    </InArgument>
+                  </p4:GenerativeExtractor.ExtractorDocumentType>
+                  <p4:GenerativeExtractor.ExtractorResult>
+                    <OutArgument x:TypeArguments="p5:ExtractorResult">
+                      <DelegateArgumentReference x:TypeArguments="p5:ExtractorResult">
+                        <DelegateOutArgument x:TypeArguments="p5:ExtractorResult" Name="ExtractorResult" />
+                      </DelegateArgumentReference>
+                    </OutArgument>
+                  </p4:GenerativeExtractor.ExtractorResult>
+                  <p4:GenerativeExtractor.PredictionId>
+                    <InArgument x:TypeArguments="x:String">
+                      <DelegateArgumentValue x:TypeArguments="x:String">
+                        <DelegateInArgument x:TypeArguments="x:String" Name="PredictionId" />
+                      </DelegateArgumentValue>
+                    </InArgument>
+                  </p4:GenerativeExtractor.PredictionId>
+                </p4:GenerativeExtractor>
+              </p3:DataExtractionScope.Extractors>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </p3:DataExtractionScope>
+            <Assign sap2010:Annotation.AnnotationText="Takes the Compartiment extracted by generative extractor and assigns it to the SET type field&#xA;&#xA;This is done because we cannot use the generative extractor for SET type fields." DisplayName="Manually assign &quot;Compartiment de Repartitie&quot;" sap:VirtualizedContainerService.HintSize="477.6,196.8" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="p2:ResultsValue[]">[out_ExtractionResults.ResultsDocument.Fields.FirstOrDefault(Function(f) f.FieldName = "Departament responsabil").Values]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="p2:ResultsValue[]">[new ResultsValue(){new ResultsValue(Compartiment, nothing, 0, 0)}]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+          </Sequence>
+        </ActivityAction>
+      </ui:RetryScope.ActivityBody>
+      <ui:RetryScope.Condition>
+        <ActivityFunc x:TypeArguments="x:Boolean" />
+      </ui:RetryScope.Condition>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:RetryScope>
+    <ui:Comment sap:VirtualizedContainerService.HintSize="552.8,136.8" sap2010:WorkflowViewState.IdRef="Comment_1" Text="An Extractor that uses a paid license might incur extra costs when re-executing. This should be taken into consideration for the number of retries." />
+  </Sequence>
+</Activity>
